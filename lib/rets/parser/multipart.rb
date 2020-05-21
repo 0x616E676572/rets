@@ -19,8 +19,18 @@ module Rets
           header_part, body_part = chunk.split(/#{CRLF}#{WSP}*#{CRLF}/m, 2)
 
           if header_part =~ HEADER_LINE
-            headers = header_part.split(/\r\n/).map { |kv| p = kv.split(/:\s?/); [p[0].downcase, p[1..-1].join(':')] }
-            headers = Hash[*headers.flatten]
+            headers = { "ObjectData" => [] }
+            header_part.split(/\r\n/).each do |kv|
+              name, *contents = kv.split(/:\s?/)
+              content = contents.join(":")
+              name == "ObjectData" ? headers[name] << content : headers[name] = content
+            end
+            if headers["ObjectData"].present?
+              headers["ObjectData"] = Rack::Utils.parse_nested_query(headers["ObjectData"].join("&"))
+            else
+              headers.delete("ObjectData")
+            end
+
             parts << Part.new(headers, body_part)
           else
             next # not a valid chunk.

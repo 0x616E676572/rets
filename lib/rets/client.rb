@@ -256,6 +256,22 @@ module Rets
       http_post(capability_url("GetObject"), params, extra_headers)
     end
 
+    def objects_with_data(resource:, object_type:, object_ids:)
+      params = {
+        "Resource"   => resource,
+        "Type"       => object_type,
+        "ID"         => object_ids,
+        "Location"   => 1,
+        "ObjectData" => "*"
+      }
+
+      extra_headers = {
+        "Accept" => "image/jpeg, image/png;q=0.5, image/gif;q=0.1",
+      }
+
+      http_post(capability_url("GetObject"), params, extra_headers)
+    end
+
     def metadata(types=nil)
       return @metadata if @metadata
       @cached_metadata ||= @caching.load(@logger)
