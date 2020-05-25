@@ -1,3 +1,7 @@
+### 0.11.2.1 / 2020-05-25
+
+* added Client#objects_with_data method to query media with metadata for multiple of records.
+
 ### 0.11.2 / 2019-09-30
 
 * fix: fix broken 0.11.1 release
