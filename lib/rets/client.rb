@@ -269,7 +269,7 @@ module Rets
         "Accept" => "image/jpeg, image/png;q=0.5, image/gif;q=0.1",
       }
 
-      http_post(capability_url("GetObject"), params, extra_headers)
+      create_parts_from_response(http_post(capability_url("GetObject"), params, extra_headers))
     end
 
     def metadata(types=nil)
