@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |s|
   s.name = "rets"
-  s.version = "0.11.0.20200531"
+  s.version = "0.11.0.20200531.bm"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
