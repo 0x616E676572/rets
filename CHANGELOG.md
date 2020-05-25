@@ -1,4 +1,16 @@
-### 0.11.0 / NOT RELEASED YET
+### 0.11.2.1 / 2020-05-25
+
+* added Client#objects_with_data method to query media with metadata for multiple of records.
+
+### 0.11.2 / 2019-09-30
+
+* fix: fix broken 0.11.1 release
+
+### 0.11.1 / 2019-09-30
+
+* feature: allow newer versions of httpclient to be used
+
+### 0.11.0 / 2017-01-17
 
 * fix: fix retry logging
 * feature: allow retries to be configured for all query types in client settings

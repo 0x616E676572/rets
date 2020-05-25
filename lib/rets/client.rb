@@ -34,6 +34,8 @@ module Rets
       res = http_get(login_url)
       Parser::ErrorChecker.check(res)
 
+      client_progress.login
+
       new_capabilities = extract_capabilities(Nokogiri.parse(res.body))
       unless new_capabilities
         raise UnknownResponse, "Cannot read rets server capabilities."
@@ -269,7 +271,7 @@ module Rets
         "Accept" => "image/jpeg, image/png;q=0.5, image/gif;q=0.1",
       }
 
-      http_post(capability_url("GetObject"), params, extra_headers)
+      create_parts_from_response(http_post(capability_url("GetObject"), params, extra_headers))
     end
 
     def metadata(types=nil)
