@@ -258,12 +258,12 @@ module Rets
       http_post(capability_url("GetObject"), params, extra_headers)
     end
 
-    def objects_with_data(resource:, object_type:, object_ids:)
+    def objects_with_data(resource:, object_type:, object_ids:, options: {})
       params = {
         "Resource"   => resource,
         "Type"       => object_type,
         "ID"         => object_ids,
-        "Location"   => 1,
+        "Location"   => options.fetch(:location, 1),
         "ObjectData" => "*"
       }
 
